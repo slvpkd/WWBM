@@ -1,0 +1,26 @@
+{
+  "name": "WebDev",
+  "version": "1.0.0",
+  "description": "Front End Web Developer Environment",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-cssnano": "^2.1.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.6",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^1.0.2",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.1",
+    "gulp-useref": "^3.1.5",
+    "run-sequence": "^2.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sefton Downes",
+  "license": "MIT"
+}

@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Who Wants to Be a Millionaire | Quiz Game</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="WEBDev - Front End Development Environment">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/timecircles/1.5.3/TimeCircles.min.css" rel="stylesheet">
+    <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/mobile.css">
+
+    <!--endbuild-->
+
+</head>
+
+
+<video id="introVideo" preload="auto">
+    <source src="./images/IntroVideo.mp4" type="video/mp4"> Your browser does not support the video tag.
+</video>
+<audio id="music" preload="auto">
+    <source src="./sounds/Music/0_to_1000.mp3" type="audio/mpeg">
+</audio>
+<audio id="music" preload="auto">
+    <source src="./sounds/Music/2000_to_32000.mp3" type="audio/mpeg">
+</audio>
+<audio id="music" preload="auto">
+    <source src="./sounds/Music/64000.mp3" type="audio/mpeg">
+</audio>
+<audio id="music" preload="auto">
+    <source src="./sounds/Music/125000_to_250000.mp3" type="audio/mpeg">
+</audio>
+<audio id="music" preload="auto">
+    <source src="./sounds/Music/500000.mp3" type="audio/mpeg">
+</audio>
+<audio id="music" preload="auto">
+    <source src="./sounds/Music/1000000.mp3" type="audio/mpeg">
+</audio>
+
+
+
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/correct answer.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/final answer.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/lets play.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/phone a friend.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/wrong answer.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/commerical break.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/blast.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/Winner.mp3" type="audio/mpeg">
+</audio>
+<audio id="effects" preload="auto">
+    <source src="./sounds/Effects/tick-tock.mp3" type="audio/mpeg">
+</audio>
+
+
+<body>
+
+    <section id="preloader">
+        <img class="loaderLogo" src="images/Logo.png">
+        <div class="loader"></div>
+        <div class="preloader-1">
+            <div>Loading</div>
+            <br>
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+            <span class="line line-4"></span>
+            <span class="line line-5"></span>
+            <span class="line line-6"></span>
+            <span class="line line-7"></span>
+            <span class="line line-8"></span>
+            <span class="line line-9"></span>
+        </div>
+    </section>
+
+
+    <section   id="mainMenu">
+        <img class="logo" src="images/Logo.png">
+
+        <div class="textBlock">
+            <div class="textBlockText" id="playGameBtn">Play Game</div>
+        </div>
+        <div class="textBlock">
+            <div class="textBlockText" id="showLeaderboardBtn">Leaderboard</div>
+        </div>
+    </section>
+
+    <section   id="leaderboard">
+        <a href="./index.html">
+            <img class="logoSm" src="images/Logo.png">
+        </a>
+
+        <div class="textBlock menuBtn mb-5" id="exitLeaderboardBtn">
+             <div class="textBlockText">Main Menu</div>
+            </div>
+<Br><Br>
+        <div class="leaderboardHeader">
+                <div class="leaderboardHeaderText">LEADERBOARD</div>
+            </div>
+
+            <div id="leaderboardMain_data"></div>
+        
+    </section>
+
+    <section  id="gameWindow">
+        <a href="./index.html">
+            <img class="logoSm" src="images/Logo.png">
+        </a>
+        
+        <div hidden id="answer"></div>
+
+        <div class="settings">
+            <a href="#" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-volume-up"></i> Settings</a>
+       <!-- Button trigger modal -->
+       
+
+        </div>
+
+
+ 
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-dark" >
+              <h5 class="modal-title" id="exampleModalLabel">Volume Settings</h5>
+             
+            </div>
+            <div class="modal-body bg-dark" >
+                <button class="btn btn-block btn-secondary btn-sm" id="volumeOff"><i class="fas fa-volume-off"></i> Volume Off</button>
+                <button class="btn btn-block btn-secondary btn-sm" id="volumeHalf"><i class="fas fa-volume-down"></i> Volume Quiet</button>
+                <button class="btn btn-block btn-secondary btn-sm" id="volumeOn"><i class="fas fa-volume-up"></i> Volume On</button>
+            </div>
+            <div class="modal-footer bg-secondary">
+              <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="llWrapper">
+
+            <div class="lifeLine" id="llSwitch">
+                <div class="llText">
+                    <i class="fas fa-arrows-alt-h"></i>
+                </div>
+                <div hidden id="cross1" class="cross"></div>
+            </div>
+
+            <div class="lifeLine" id="ll5050">
+                <div class="llText">50:50</div>
+                <div hidden id="cross2" class="cross"></div>
+            </div>
+            <div class="lifeLine" id="llAudience">
+                <div class="llText">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div hidden id="cross3" class="cross"></div>
+            </div>
+
+        </div>
+
+        <div id="countdownTimer" class="timer">
+            <div id="timer" class="hide" data-timer="60"></div>
+        </div>
+
+        <div id="scoreCutScene" class="modalWindow">
+            <div class="stars"></div>
+            <div class="twinkling"></div>
+            <div class="clouds"></div>
+            <div id="displayScore">$
+                <span id="sceneScoreValue">1,000,000</span>
+            </div>
+        </div>
+
+        <div id="endGameCutScene" class="modalWindow">
+            <div class="stars"></div>
+            <div class="twinkling"></div>
+            <div class="clouds"></div>
+            <div class="modalBox">
+
+                <div class="container text-center">
+                    <br>
+                    <br>
+                    <strong>
+                        <h1 class="display-2 neon" style="color:white;" id="endGameHeader">Game Over</h1>
+                    </strong>
+                    <h2 class="display-3 neon" id="endGameScoreHeader">$
+                        <span id="endGameScore">1000000</span>
+                    </h2>
+                    <form>
+                        <h2 class="endGameMsg">Please enter your name to be added to the leaderboard</h2>
+
+
+                        <input type="text" class="bigInput" data-key='name' id="name" class="form-control user-input">
+                        <br>
+                        <br>
+                        <div  class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Score</span>
+                            </div>
+                            <input type="text" id="score" data-key='score' class="form-control user-input">
+                        </div>
+
+                        <div class="textBlock" id="addToLeaderboardBtn">
+                            <div class="textBlockText textBlockTextMob" id="scoreBtn">Add to Leaderboard</div>
+                        </div>
+
+                        <div class="textBlock menuBtn" id="exitGameBtn">
+                            <div class="textBlockText textBlockTextMob" id="scoreBtn">Exit Game</div>
+                        </div>
+
+
+
+                        <!-- <button disabled type='button' class="btn btn-warning btn-lg btn-block" >Add to Leaderboard</button> -->
+                    </form>
+                    <br>
+                    <br>
+
+                    <div id="leaderboard_data"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="mobileScore">$
+            <span id="scoreValue">1,000,000</span>
+        </div>
+
+        <div id="AsktheAudience">
+            <div id="myProgress">
+                <div id="meter1" class="myBar">
+                    <span class="meterText">A</span>
+                </div>
+                <div id="meter2" class="myBar">
+                    <span class="meterText">B</span>
+                </div>
+                <div id="meter3" class="myBar">
+                    <span class="meterText">C</span>
+                </div>
+                <div id="meter4" class="myBar">
+                    <span class="meterText">D</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="scoreMeter">
+            <div class="outer" id="q15" data-id="0">
+                <span class="level checkpoint">15</span>
+                <div class="bar">
+                    <div class="amount checkpoint">1,000,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q14" data-id="6.62%">
+                <span class="level">14</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">500,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q13" data-id="13.29%">
+                <span class="level">13</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">250,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q12" data-id="19.96%">
+                <span class="level">12</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">125,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q11" data-id="26.63%">
+                <span class="level">11</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">64,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q10" data-id="33.3%">
+                <span class="level checkpoint">10</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount checkpoint">32,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q9" data-id="39.97%">
+                <span class="level">9</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">16,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q8" data-id="46.64%">
+                <span class="level">8</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">8,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q7" data-id="53.31%">
+                <span class="level">7</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">4,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q6" data-id="59.98%">
+                <span class="level">6</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">2,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q5" data-id="66.65%">
+                <span class="level checkpoint">5</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount checkpoint">1,000</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q4" data-id="73.32%">
+                <span class="level">4</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">500</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q3" data-id="79.99%">
+                <span class="level">3</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">250</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q2" data-id="86.66%">
+                <span class="level">2</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">100</div>
+                </div>
+            </div>
+
+            <div class="outer" id="q1" data-id="93.33%">
+                <span class="level">1</span>
+                <div class="bar">
+                    <div class="progress"></div>
+                    <div class="amount">0</div>
+                </div>
+            </div>
+
+
+            <div class="progressBar">
+                <div class="progressLevel"></div>
+            </div>
+        </div>
+
+        <div id="questionBlock">
+            <div class="questionBox" id="questionBox">
+                <div id="question"></div>
+            </div>
+        </div>
+
+        <div id="answerBlock">
+
+            <div id="ans1B" class="answer answerOne">
+                <p class="answerText">A:
+                    <span id="ans1"></span>
+                </p>
+            </div>
+            <div id="ans2B" class="answer answerTwo">
+                <p class="answerText">B:
+                    <span id="ans2"></span>
+                </p>
+            </div>
+            <div id="ans3B" class="answer answerThree">
+                <p class="answerText">C:
+                    <span id="ans3"></span>
+                </p>
+            </div>
+            <div id="ans4B" class="answer answerFour">
+                <p class="answerText">D:
+                    <span id="ans4"></span>
+                </p>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <footer>
+        <div id="textbox">
+            <p class="alignleft">
+                <a href="http://www.slvpkd.com" target="_blank">WWW.SLVPKD.COM</a>
+            </p>
+            <p class="alignright">DEVELOPED BY SEFTON DOWNES</p>
+        </div>
+        <div style="clear: both;"></div>
+    </footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://rawgithub.com/hiddentao/google-tts/master/google-tts.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/timecircles/1.5.3/TimeCircles.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.15/howler.core.min.js"></script>
+    
+    <!--build:js js/app.min.js -->
+    <script src="js/sounds.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/functions.js"></script>
+    
+    <!-- endbuild -->
+    <script src="./js/leaderboard.js"></script>
+    
+</body>
+
+</html>
